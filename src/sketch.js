@@ -1,13 +1,17 @@
 p5.disableFriendlyErrors = true;
 let population = [];
+let populationTotal = 1000;
+let infectedFromStart = 5;
 
 const HEIGHT = 480;
 const WIDTH = 1024;
 
 function setup() {
-    for (let i = 0; i < 1000; i++) {
-        let individual = new Individual(WIDTH, HEIGHT);
-        population.push(individual);
+    for (let i = 0; i < infectedFromStart; i++) {
+        population.push(new Individual(WIDTH, HEIGHT, Individual.INFECTIOUS));
+    }
+    for (let i = 0; i < populationTotal - infectedFromStart; i++) {
+        population.push(new Individual(WIDTH, HEIGHT, Individual.SUSCEPTIBLE));
     }
     createCanvas(WIDTH, HEIGHT);
     textSize(18);
@@ -22,7 +26,7 @@ function draw() {
     stroke('yellow');
     susceptible.forEach(individual => {
         point(individual.posX, individual.posY);
-        individual.move();
+        individual.update();
     });
     stroke('red');
     infectious.forEach(individual => {
@@ -30,12 +34,12 @@ function draw() {
         population
             .filter(candidate => Math.abs(individual.posX - candidate.posX) <= 2 && Math.abs(individual.posY - candidate.posY) <= 2)
             .forEach(candidate => candidate.infect());
-        individual.move();
+        individual.update();
     });
     stroke('green');
     removed.forEach(individual => {
         point(individual.posX, individual.posY);
-        individual.move();
+        individual.update();
     });
     stroke('black');
     strokeWeight(0.5);
