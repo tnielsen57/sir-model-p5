@@ -1,7 +1,7 @@
 p5.disableFriendlyErrors = true;
 let population = [];
-let populationTotal = 2000;
-let infectedFromStart = 8;
+let populationTotal = 0;
+let infectedFromStart = 0;
 let iteration = 0;
 
 let HEIGHT = 0;
@@ -15,6 +15,8 @@ function setup() {
     HEIGHT = windowHeight;
     WIDTH_POPULATION = windowWidth / 2;
     WIDTH_GRAPH = windowWidth / 2;
+    populationTotal = HEIGHT * SCALE;
+    infectedFromStart = populationTotal / (HEIGHT / 2);
     for (let i = 0; i < infectedFromStart; i++) {
         population.push(new Individual(WIDTH_POPULATION, HEIGHT, Individual.INFECTIOUS));
     }
