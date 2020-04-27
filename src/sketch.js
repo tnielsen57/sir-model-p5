@@ -23,14 +23,14 @@ function setup() {
     }
     createCanvas(WIDTH_POPULATION + WIDTH_GRAPH, HEIGHT);
     textSize(18);
-    background(220);
+    background(180);
     text(`${HEIGHT * SCALE}`, WIDTH_POPULATION + 10, 25);
     text('0', WIDTH_POPULATION + 10, HEIGHT - 10);
 }
 
 function draw() {
     stroke('black');
-    fill(220);
+    fill(180);
     rect(0, 0, WIDTH_GRAPH + 2, HEIGHT);
     strokeWeight(3);
     let susceptible = filterByStatus(Individual.SUSCEPTIBLE);
