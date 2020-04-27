@@ -18,6 +18,8 @@ function setup() {
     createCanvas(WIDTH_POPULATION + WIDTH_GRAPH, HEIGHT);
     textSize(18);
     background(220);
+    text(`${HEIGHT}`, WIDTH_POPULATION + 10, 25);
+    text('0', WIDTH_POPULATION + 10, HEIGHT - 10);
 }
 
 function draw() {
@@ -49,7 +51,7 @@ function draw() {
     fill(0);
     stroke('black');
     strokeWeight(0.5);
-    text(`Susceptible: ${susceptible.length}, Infectious: ${infectious.length}, Removed: ${removed.length}`, 10, 30);
+    text(`Susceptible: ${susceptible.length}, Infectious: ${infectious.length}, Removed: ${removed.length}`, 10, 25);
     drawGraph(susceptible.length, infectious.length, removed.length)
 }
 
@@ -64,12 +66,12 @@ function drawGraph(susceptible, infectious, removed) {
     translate(0, HEIGHT);
     strokeWeight(2);
     stroke('yellow');
-    point(iteration/2 + WIDTH_POPULATION, -susceptible/2);
+    point(iteration / 2 + WIDTH_POPULATION, -susceptible / 2);
     stroke('red');
-    point(iteration/2 + WIDTH_POPULATION, -infectious/2);
+    point(iteration / 2 + WIDTH_POPULATION, -infectious / 2);
     stroke('green');
-    point(iteration/2 + WIDTH_POPULATION, -removed/2);
-    if(infectious != 0) {
+    point(iteration / 2 + WIDTH_POPULATION, -removed / 2);
+    if (infectious != 0) {
         iteration++;
     }
 }
