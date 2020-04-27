@@ -1,14 +1,20 @@
 p5.disableFriendlyErrors = true;
 let population = [];
-let populationTotal = 1000;
-let infectedFromStart = 5;
+let populationTotal = 2000;
+let infectedFromStart = 8;
 let iteration = 0;
 
-const HEIGHT = 500;
-const WIDTH_POPULATION = 640;
-const WIDTH_GRAPH = 640;
+let HEIGHT = 0;
+let WIDTH_POPULATION = 0;
+let WIDTH_GRAPH = 0;
+
+const SCALE = 3;
+const TIME_SCALE = 2;
 
 function setup() {
+    HEIGHT = windowHeight;
+    WIDTH_POPULATION = windowWidth / 2;
+    WIDTH_GRAPH = windowWidth / 2;
     for (let i = 0; i < infectedFromStart; i++) {
         population.push(new Individual(WIDTH_POPULATION, HEIGHT, Individual.INFECTIOUS));
     }
@@ -18,7 +24,7 @@ function setup() {
     createCanvas(WIDTH_POPULATION + WIDTH_GRAPH, HEIGHT);
     textSize(18);
     background(220);
-    text(`${HEIGHT}`, WIDTH_POPULATION + 10, 25);
+    text(`${HEIGHT * SCALE}`, WIDTH_POPULATION + 10, 25);
     text('0', WIDTH_POPULATION + 10, HEIGHT - 10);
 }
 
@@ -66,11 +72,11 @@ function drawGraph(susceptible, infectious, removed) {
     translate(0, HEIGHT);
     strokeWeight(2);
     stroke('yellow');
-    point(iteration / 2 + WIDTH_POPULATION, -susceptible / 2);
+    point(iteration / TIME_SCALE + WIDTH_POPULATION, -susceptible / SCALE);
     stroke('red');
-    point(iteration / 2 + WIDTH_POPULATION, -infectious / 2);
+    point(iteration / TIME_SCALE + WIDTH_POPULATION, -infectious / SCALE);
     stroke('green');
-    point(iteration / 2 + WIDTH_POPULATION, -removed / 2);
+    point(iteration / TIME_SCALE + WIDTH_POPULATION, -removed / SCALE);
     if (infectious != 0) {
         iteration++;
     }
