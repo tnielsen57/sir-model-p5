@@ -12,11 +12,11 @@ const SCALE = 3;
 const TIME_SCALE = 2;
 
 function setup() {
-    HEIGHT = windowHeight;
-    WIDTH_POPULATION = windowWidth / 2;
-    WIDTH_GRAPH = windowWidth / 2;
+    HEIGHT = windowHeight - 5;
+    WIDTH_POPULATION = windowWidth / 2 - 2;
+    WIDTH_GRAPH = windowWidth / 2 - 2;
     populationTotal = HEIGHT * SCALE;
-    infectedFromStart = populationTotal / (HEIGHT / 2);
+    infectedFromStart = populationTotal * 0.003;
     for (let i = 0; i < infectedFromStart; i++) {
         population.push(new Individual(WIDTH_POPULATION, HEIGHT, Individual.INFECTIOUS));
     }
@@ -59,7 +59,9 @@ function draw() {
     fill(0);
     stroke('black');
     strokeWeight(0.5);
-    text(`Susceptible: ${susceptible.length}, Infectious: ${infectious.length}, Removed: ${removed.length}`, 10, 25);
+    text(`Susceptible: ${susceptible.length}`, 10, 25);
+    text(`Infectious: ${infectious.length}`, 10, 45);
+    text(`Removed: ${removed.length}`, 10, 65);
     drawGraph(susceptible.length, infectious.length, removed.length)
 }
 
