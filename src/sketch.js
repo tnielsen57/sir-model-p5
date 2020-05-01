@@ -70,18 +70,18 @@ function filterByStatus(status) {
 }
 
 /*
-    Draw the SIR graph - divide all values by 2 to fit the scale
+    Draw the SIR graph - divide all values by a fixed value to fit the scale
 */
 function drawGraph(susceptible, infectious, removed) {
-    translate(0, HEIGHT);
-    strokeWeight(2);
-    stroke('yellow');
-    point(iteration / TIME_SCALE + WIDTH_POPULATION, -susceptible / SCALE);
-    stroke('red');
-    point(iteration / TIME_SCALE + WIDTH_POPULATION, -infectious / SCALE);
-    stroke('green');
-    point(iteration / TIME_SCALE + WIDTH_POPULATION, -removed / SCALE);
     if (infectious != 0) {
+        translate(0, HEIGHT);
+        strokeWeight(2);
+        stroke('yellow');
+        point(iteration / TIME_SCALE + WIDTH_POPULATION, -susceptible / SCALE);
+        stroke('red');
+        point(iteration / TIME_SCALE + WIDTH_POPULATION, -infectious / SCALE);
+        stroke('green');
+        point(iteration / TIME_SCALE + WIDTH_POPULATION, -removed / SCALE);
         iteration++;
     }
 }
